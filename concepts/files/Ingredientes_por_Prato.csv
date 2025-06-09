@@ -1,0 +1,44 @@
+Prato,Ingrediente
+Espaguete,Massa de Espaguete
+Espaguete,Molho de Tomate
+Espaguete,Queijo
+Hambúrguer,Pão de Hambúrguer
+Hambúrguer,Carne Bovina
+Hambúrguer,Alface
+Hambúrguer,Queijo
+Hambúrguer,Tomate
+Salada,Alface
+Salada,Tomate
+Salada,Cenoura
+Salada,Cebola
+Steak,Carne Bovina
+Steak,Batata
+Steak,Molho de Barbecue
+Pizza,Massa de Pizza
+Pizza,Molho de Tomate
+Pizza,Queijo
+Pizza,Presunto
+Sopa,Batata
+Sopa,Cenoura
+Sopa,Cebola
+Sopa,Caldo Concentrado
+Frango Assado,Frango
+Frango Assado,Batata
+Frango Assado,Ervas Finas
+Peixe Grelhado,Peixe
+Peixe Grelhado,Limão
+Peixe Grelhado,Azeite
+Ramen,Macarrão Oriental
+Ramen,Ovo
+Ramen,Molho de Soja
+Ramen,Cebolinha
+Panquecas,Farinha de Trigo
+Panquecas,Ovo
+Panquecas,Leite
+Panquecas,Mel
+Batata Frita,Batata
+Batata Frita,Sal
+Donut,Farinha de Trigo
+Donut,Açúcar
+Donut,Chocolate
+Donut,Leite
