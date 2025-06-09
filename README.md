@@ -45,7 +45,7 @@ kitchen-rush/
 ## 📹 Demonstração
 
 Assista ao vídeo do protótipo jogável:  
-👉 [Kitchen Rush no YouTube](https://www.youtube.com/watch?v=SEU_VIDEO_ID)
+👉 [Kitchen Rush no YouTube](https://www.youtube.com/watch?v=zfFwE3YUQB4)
 
 ---
 
@@ -59,7 +59,7 @@ Este projeto é protegido por direitos autorais. Veja o arquivo [LICENSE](LICENS
 
 Desenvolvido por **Luiz Ricardo Dererita de Araújo**  
 📧 luizraizen@gmail.com  
-🔗 [Portfólio Profissional](https://seu-site-pessoal.com)  
+🔗 [Portfólio Profissional](https://luizrdererita-dev.com)  
 🔗 [LinkedIn](https://www.linkedin.com/in/luizdererita-ads)  
 🔗 [GitHub](https://github.com/LuizRaizen)
 
