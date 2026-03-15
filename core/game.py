@@ -7,6 +7,8 @@ e delegar atualizações, renderizações e eventos para o estado correspondente
 
 from core.states.splash_screen import SplashScreen
 from settings import Settings
+from core.assets.player import Player
+from core.assets.menu import PlayerMenu
 
 
 class Game:
@@ -22,7 +24,9 @@ class Game:
         Inicializa o jogo com as configurações e define o primeiro estado (SplashScreen).
         """
         self.config = Settings()
+        self.player = Player(nickname="Player", restaurant_name="Meu Restaurante")
         self.state = SplashScreen(self)
+        self.player_menu = PlayerMenu()
 
     def change_state(self, new_state):
         """

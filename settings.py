@@ -13,7 +13,7 @@ class Settings:
         }
         self.MONEY = {
             'image': "graphics/sprites/money_1.png",
-            'amount': 100,
+            'amount': 100.0,
             'font': 'fonts/Baloo2-Bold.ttf',
             'font_size': 42,
         }

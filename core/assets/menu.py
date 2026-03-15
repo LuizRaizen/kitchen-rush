@@ -1,25 +1,29 @@
-"""Define os pratos disponíveis no restaurante."""
+# core/assets/menu.py
+from typing import List
 
-import pygame
+from core.assets.dishes import DISHES, Dish
 
 
-class Dish:
-    """Classe do jogo."""
-    def __init__(self, name, difficulty=1, price=10, prep_time=5):
-        self.name = name
-        self.difficulty = difficulty  # 1 a 5
-        self.price = price
-        self.prep_time = prep_time  # em segundos
+class PlayerMenu:
+    """
+    Armazena os pratos desbloqueados do jogador.
+    Você pode persistir/carregar isso em savegames depois.
 
-    def __str__(self):
-        return f"{self.name} - ${self.price}"
-        
+    OBS (teste): iniciamos com TODOS os pratos do catálogo desbloqueados,
+    apenas para fins de teste/validação do cardápio.
+    """
 
-# Lista de pratos disponíveis
-MENU = [
-    Dish("Hambúrguer Simples", difficulty=1, price=10, prep_time=4),
-    Dish("Sopa de Legumes", difficulty=2, price=15, prep_time=6),
-    Dish("Salada Tropical", difficulty=1, price=8, prep_time=3),
-    Dish("Bife Grelhado", difficulty=3, price=20, prep_time=7),
-    Dish("Pizza Gourmet", difficulty=4, price=25, prep_time=10)
-]
+    def __init__(self) -> None:
+        # TESTE: desbloquear todos os pratos disponíveis no catálogo
+        self.owned_keys: List[str] = [d.key for d in DISHES]
+
+    def owned_dishes(self) -> List[Dish]:
+        catalog = {d.key: d for d in DISHES}
+        return [catalog[k] for k in self.owned_keys if k in catalog]
+
+    def unlock(self, dish_key: str) -> None:
+        if dish_key not in self.owned_keys:
+            self.owned_keys.append(dish_key)
+
+    def is_owned(self, dish_key: str) -> bool:
+        return dish_key in self.owned_keys

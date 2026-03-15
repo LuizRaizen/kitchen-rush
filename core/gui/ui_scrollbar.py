@@ -123,3 +123,21 @@ class UIScrollbar:
             screen.blit(bar_scaled, bar_rect.topleft)
         else:
             pygame.draw.rect(screen, self.bar_color, bar_rect, border_radius=6)
+
+    def set_content(self, content_height: int, view_height: int):
+        """
+        Atualiza dinamicamente as métricas de conteúdo/viewport, recalculando a altura da barra.
+        Mantém a posição relativa de rolagem.
+        """
+        self.content_height = max(0, int(content_height))
+        self.view_height = max(1, int(view_height))
+
+        if self.content_height > self.view_height:
+            self.bar_height = max(24, int(self.view_height * (self.view_height / self.content_height)))
+        else:
+            self.bar_height = self.view_height
+
+        # mantém a proporção de rolagem atual
+        current_offset = self.get_scroll_offset()
+        self.bar_rect.height = self.bar_height
+        self.set_scroll_offset(current_offset)

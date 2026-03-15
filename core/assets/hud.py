@@ -7,29 +7,67 @@ from settings import Settings
 from utils.audio_manager import audio_manager
 
 
+# assets/hud.py (ou onde sua classe Money vive)
+import pygame
+from settings import Settings  # só se você usar para carregar imagem/fonte fora daqui
+
 class Money:
-    """Classe que representa o lucro do restaurante."""
-    def __init__(self, x, y, image, font):
+    """HUD que exibe/atualiza o dinheiro do RESTAURANTE ATIVO do jogador."""
+    def __init__(self, x, y, image, font, game):
         self.x = x
         self.y = y
-        self.config = Settings()
-        self.image = image  # sprite de fundo (money_1.png)
+        self.image = image     # sprite de fundo (money_1.png)
         self.font = font
-        self.amount = self.config.MONEY['amount']
+        self.game = game       # precisamos do game para chegar no player -> restaurante ativo
 
-    def add(self, value):
-        self.amount += value
+    # --- util ---
+    @staticmethod
+    def _fmt(v: int) -> str:
+        # 2 casas, separador pt-BR visual (se quiser manter $ com ponto, troque por f"${v:.2f}")
+        return f"$ {v}"
 
-    def spend(self, value):
-        if self.amount >= value:
-            self.amount -= value
+    def _active_restaurant(self):
+        player = getattr(self.game, "player", None)
+        if player and hasattr(player, "get_active_restaurant"):
+            return player.get_active_restaurant()
+        return None
+
+    # --- API pública (atalhos que atuam no restaurante ativo) ---
+    def get_amount(self) -> int:
+        r = self._active_restaurant()
+        return r.money if r else 0
+
+    def set_amount(self, value: int):
+        r = self._active_restaurant()
+        if r is not None:
+            r.money = value
+
+    def add(self, value: int):
+        r = self._active_restaurant()
+        if r is not None:
+            r.money = r.money + value
+
+    def spend(self, value: int) -> bool:
+        r = self._active_restaurant()
+        if r is None:
+            return False
+        value = value
+        if r.money >= value:
+            r.money -= value
             return True
         return False
 
-    def render(self, screen):
+    # --- desenho ---
+    def render(self, screen: pygame.Surface):
+        # fundo
         screen.blit(self.image, (self.x, self.y))
-        text = self.font.render(f"$ {self.amount}", True, (65, 40, 20))
-        text_rect = text.get_rect(center=(self.x + self.image.get_width() // 2, self.y + 38))
+
+        # texto centralizado no badge
+        amount = self.get_amount()
+        text = self.font.render(self._fmt(amount), True, (65, 40, 20))
+        cx = self.x + self.image.get_width() // 2
+        cy = self.y + 38  # ajusta conforme seu sprite
+        text_rect = text.get_rect(center=(cx, cy))
         screen.blit(text, text_rect)
 
 

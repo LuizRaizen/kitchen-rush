@@ -1,5 +1,6 @@
 import uuid
 from datetime import datetime
+from settings import Settings
 
 
 class Restaurant:
@@ -14,14 +15,17 @@ class Restaurant:
 
         :param name: Nome do restaurante
         """
+        self.config = Settings()
+
+        # Informações do restaurante
         self.name = name
         self.restaurant_id = str(uuid.uuid4())
         self.created_at = datetime.now().isoformat()
 
         # Progresso do restaurante
         self.day = 1
-        self.money = 0.0
-        self.reputation = 3.0  # Estrelas de 0 a 5
+        self.money = self.config.MONEY['amount']
+        self.reputation = 3  # Estrelas de 0 a 5
 
         # Operação
         self.menu = []                     # Pratos ativos
@@ -31,7 +35,7 @@ class Restaurant:
 
         # Estatísticas
         self.total_clients_served = 0
-        self.total_money_earned = 0.0
+        self.total_money_earned = 0
         self.total_failed_days = 0
 
     def hire_employee(self, employee_id: int):

@@ -115,6 +115,6 @@ audio_manager.load_sound("swipe", "audio/sounds/effects/swipe_effect_2.wav")
 
 # Músicas de fundo
 #audio_manager.load_music("menu", "sounds/bgm/menu_theme.mp3")
-#audio_manager.load_music("gameplay", "sounds/bgm/gameplay_loop.mp3")
+audio_manager.load_music("gameplay", "audio/bgm/gameplay_loop.mp3")
 #audio_manager.load_music("victory", "sounds/bgm/victory.mp3")
 #audio_manager.load_music("defeat", "sounds/bgm/defeat.mp3")
